@@ -20,8 +20,8 @@ gaode:
   enable: false
   key:
 jwt:
-  access_token_secret:
-  refresh_token_secret:
+  access_token_secret: Wv9pfQc8piYJQg1cbu2-jgt01pg6qT1VsKF6RnfLv_s=
+  refresh_token_secret: 8ToUHO6LQa3h_KHF6n3_0uR7i6qMYgY5s-M8_rey4sQ=
   access_token_expiry_time: 2h
   refresh_token_expiry_time: 7d
   issuer: go_blog
