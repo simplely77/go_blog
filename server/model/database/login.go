@@ -1,12 +1,10 @@
 package database
 
-import (
-	"gorm.io/gorm"
-)
+import "server/global"
 
 // Login 登录日志表
 type Login struct {
-	gorm.Model
+	global.MODEL
 	UserID      uint   `json:"user_id"` // 用户 ID
 	User        User   `json:"user" gorm:"foreignKey:UserID"`
 	LoginMethod string `json:"login_method"` // 登录方式

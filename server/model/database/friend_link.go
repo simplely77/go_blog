@@ -1,12 +1,10 @@
 package database
 
-import (
-	"gorm.io/gorm"
-)
+import "server/global"
 
 // FriendLink 友链表
 type FriendLink struct {
-	gorm.Model
+	global.MODEL
 	Logo        string `json:"logo" gorm:"size:255"` // Logo
 	Image       Image  `json:"-" gorm:"foreignKey:Logo;references:URL"`
 	Link        string `json:"link"`        // 链接

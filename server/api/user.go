@@ -2,16 +2,17 @@ package api
 
 import (
 	"errors"
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis"
-	"go.uber.org/zap"
 	"server/global"
 	"server/model/database"
 	"server/model/request"
 	"server/model/response"
 	"server/utils"
 	"time"
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
+	"go.uber.org/zap"
 )
 
 type UserApi struct {

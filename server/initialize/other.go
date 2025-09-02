@@ -1,11 +1,12 @@
 package initialize
 
 import (
-	"github.com/songzhibin97/gkit/cache/local_cache"
-	"go.uber.org/zap"
 	"os"
 	"server/global"
 	"server/utils"
+
+	"github.com/songzhibin97/gkit/cache/local_cache"
+	"go.uber.org/zap"
 )
 
 // OtherInit 执行其他配置初始化

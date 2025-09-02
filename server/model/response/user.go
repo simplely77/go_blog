@@ -1,8 +1,9 @@
 package response
 
 import (
-	"github.com/gofrs/uuid"
 	"server/model/database"
+
+	"github.com/gofrs/uuid"
 )
 
 type Login struct {

@@ -1,10 +1,11 @@
 package core
 
 import (
-	"gopkg.in/yaml.v3"
 	"log"
 	"server/config"
 	"server/utils"
+
+	"gopkg.in/yaml.v3"
 )
 
 // InitConf 从 YAML 文件加载配置

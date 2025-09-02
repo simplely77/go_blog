@@ -2,8 +2,9 @@ package service
 
 import (
 	"context"
-	"github.com/elastic/go-elasticsearch/v8/typedapi/types"
 	"server/global"
+
+	"github.com/elastic/go-elasticsearch/v8/typedapi/types"
 )
 
 // EsService 提供了对 Elasticsearch 索引的操作方法

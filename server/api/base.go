@@ -1,12 +1,13 @@
 package api
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/mojocn/base64Captcha"
-	"go.uber.org/zap"
 	"server/global"
 	"server/model/request"
 	"server/model/response"
+
+	"github.com/gin-gonic/gin"
+	"github.com/mojocn/base64Captcha"
+	"go.uber.org/zap"
 )
 
 type BaseApi struct {

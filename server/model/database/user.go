@@ -1,14 +1,15 @@
 package database
 
 import (
-	"github.com/gofrs/uuid"
-	"gorm.io/gorm"
+	"server/global"
 	"server/model/appTypes"
+
+	"github.com/gofrs/uuid"
 )
 
 // User 用户表
 type User struct {
-	gorm.Model
+	global.MODEL
 	UUID      uuid.UUID         `json:"uuid" gorm:"type:char(36);unique"`              // uuid
 	Username  string            `json:"username"`                                      // 用户名
 	Password  string            `json:"-"`                                             // 密码

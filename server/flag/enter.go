@@ -3,10 +3,11 @@ package flag
 import (
 	"errors"
 	"fmt"
-	"github.com/urfave/cli"
-	"go.uber.org/zap"
 	"os"
 	"server/global"
+
+	"github.com/urfave/cli"
+	"go.uber.org/zap"
 )
 
 // 定义 CLI 标志，用于不同操作的命令行选项
@@ -44,7 +45,7 @@ var (
 // Run 执行基于命令行标志的相应操作
 // 它处理不同的标志，执行相应操作，并记录成功或错误的消息
 func Run(c *cli.Context) {
-	//检查是否设置了多个标志
+	// 检查是否设置了多个标志
 	if c.NumFlags() > 1 {
 		err := cli.NewExitError("Only one command can be specified", 1)
 		global.Log.Error("Invalid command usage:", zap.Error(err))

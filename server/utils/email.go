@@ -3,21 +3,22 @@ package utils
 import (
 	"crypto/tls"
 	"fmt"
-	"github.com/jordan-wright/email"
 	"net/smtp"
 	"server/global"
 	"strings"
+
+	"github.com/jordan-wright/email"
 )
 
 // Email 发送电子邮件
 func Email(To, subject string, body string) error {
-	to := strings.Split(To, ",")
+	to := strings.Split(To, ",") // 将收件人邮箱地址按逗号拆分成多个地址
 	return send(to, subject, body)
 }
 
 // send 执行邮件发送操作
 func send(to []string, subject string, body string) error {
-	emailCfg := global.Config.Email
+	emailCfg := global.Config.Email // 获取全局配置中的邮件设置
 
 	from := emailCfg.From
 	nickname := emailCfg.Nickname
@@ -38,6 +39,7 @@ func send(to []string, subject string, body string) error {
 		// 否则直接使用发件人邮箱
 		e.From = from
 	}
+
 	// 设置收件人、主题和邮件内容
 	e.To = to
 	e.Subject = subject

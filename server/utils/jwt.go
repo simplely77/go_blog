@@ -2,10 +2,11 @@ package utils
 
 import (
 	"errors"
-	"github.com/golang-jwt/jwt/v4"
 	"server/global"
 	"server/model/request"
 	"time"
+
+	"github.com/golang-jwt/jwt/v4"
 )
 
 type JWT struct {
@@ -27,24 +28,27 @@ func NewJWT() *JWT {
 	}
 }
 
+// CreateAccessClaims 创建 Access Token 的 Claims，包含基本信息和过期时间等
 func (j *JWT) CreateAccessClaims(baseClaims request.BaseClaims) request.JwtCustomClaims {
-	ep, _ := ParseDuration(global.Config.Jwt.AccessTokenExpiryTime)
+	ep, _ := ParseDuration(global.Config.Jwt.AccessTokenExpiryTime) // 获取过期时间
 	claims := request.JwtCustomClaims{
-		BaseClaims: baseClaims,
+		BaseClaims: baseClaims, // 基本 Claims
 		RegisteredClaims: jwt.RegisteredClaims{
-			Audience:  jwt.ClaimStrings{"TAP"},                //受众
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(ep)), //过期时间
-			Issuer:    global.Config.Jwt.Issuer,               //签名的发行者
+			Audience:  jwt.ClaimStrings{"TAP"},                // 受众
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(ep)), // 过期时间
+			Issuer:    global.Config.Jwt.Issuer,               // 签名的发行者
 		},
 	}
 	return claims
 }
 
+// CreateAccessToken 创建 Access Token，通过 Claims 生成 JWT Token
 func (j *JWT) CreateAccessToken(claims request.JwtCustomClaims) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString(j.AccessTokenSecret)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims) // 创建新的 JWT Token
+	return token.SignedString(j.AccessTokenSecret)             // 使用 AccessToken 密钥签名并返回 Token 字符串
 }
 
+// CreateRefreshClaims 创建 Refresh Token 的 Claims，包含用户信息和过期时间等
 func (j *JWT) CreateRefreshClaims(baseClaims request.BaseClaims) request.JwtCustomRefreshClaims {
 	ep, _ := ParseDuration(global.Config.Jwt.RefreshTokenExpiryTime) // 获取过期时间
 	claims := request.JwtCustomRefreshClaims{
@@ -58,6 +62,7 @@ func (j *JWT) CreateRefreshClaims(baseClaims request.BaseClaims) request.JwtCust
 	return claims
 }
 
+// CreateRefreshToken 创建 Refresh Token，通过 Claims 生成 JWT Token
 func (j *JWT) CreateRefreshToken(claims request.JwtCustomRefreshClaims) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims) // 创建新的 JWT Token
 	return token.SignedString(j.RefreshTokenSecret)            // 使用 RefreshToken 密钥签名并返回 Token 字符串

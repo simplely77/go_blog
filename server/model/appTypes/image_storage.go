@@ -6,13 +6,23 @@ import "encoding/json"
 type Storage int
 
 const (
-	Local Storage = iota //本地存储
-	Qiniu                //七牛云存储
+	Local Storage = iota // 本地
+	Qiniu                // 七牛云
 )
 
 // MarshalJSON 实现了 json.Marshaler 接口
 func (s Storage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(s.String())
+}
+
+// UnmarshalJSON 实现了 json.Unmarshaler 接口
+func (s *Storage) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		return err
+	}
+	*s = ToStorage(str)
+	return nil
 }
 
 // String 方法返回 Storage 的字符串表示
@@ -29,7 +39,7 @@ func (s Storage) String() string {
 	return str
 }
 
-// ToStorage函数将字符串转换为Storage
+// ToStorage 函数将字符串转换为 Storage
 func ToStorage(str string) Storage {
 	switch str {
 	case "本地":

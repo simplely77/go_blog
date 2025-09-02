@@ -19,7 +19,7 @@ func main() {
 
 	flag.InitFlag()
 
-	initialize.InitCorn()
+	initialize.InitCron()
 
 	core.RunServer()
 }
